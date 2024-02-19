@@ -13,22 +13,16 @@ public class GameBoard : MonoBehaviour
 
 	private void Start()
 	{
-		size = Game.Instance.BoardSize;
+		size = Game.Instance.boardSize;
+		ground.position = Game.Instance.boardPos;
 
 		ground.localScale = new Vector3(size.x, size.y, 1f);
 
-		Vector2 offset = new Vector2((size.x - 1) * 0.5f, (size.y - 1) * 0.5f);
-
-		for (int y = 0; y < size.y; y++)
+		foreach (Vector3 pos in Game.Instance.grid.GetNodePositions())
 		{
-			for (int x = 0; x < size.x; x++)
-			{
-				GameTile tile = Instantiate(tilePrefab);
-				tile.transform.SetParent(transform, false);
-				tile.transform.localPosition = new Vector3(
-					x - offset.x, y - offset.y, 0f
-				);
-			}
+			GameTile tile = Instantiate(tilePrefab);
+			tile.transform.SetParent(transform, false);
+			tile.transform.localPosition = pos;
 		}
 	}
 }
