@@ -1,7 +1,7 @@
 using Chapter.Singleton;
 using UnityEngine;
 
-public class Game : Singleton<Game>
+public class BoardManager : Singleton<BoardManager>
 {
     public readonly Vector3 boardPos = Vector3.zero;
     public readonly int minBoardSize = 1;
@@ -19,6 +19,11 @@ public class Game : Singleton<Game>
         _grid = new Grid(boardSize, boardPos);
     }
 
+    public Node GetRandomNode()
+    {
+        var nodes = _grid.GetNodes();
+        return nodes[Random.Range(0, nodes.Length)];
+    }
 
     void OnValidate()
     {

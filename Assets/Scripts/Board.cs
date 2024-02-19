@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameBoard : MonoBehaviour
+public class Board : MonoBehaviour
 {
 
 	[SerializeField]
@@ -13,12 +13,12 @@ public class GameBoard : MonoBehaviour
 
 	private void Start()
 	{
-		size = Game.Instance.boardSize;
-		ground.position = Game.Instance.boardPos;
+		size = BoardManager.Instance.boardSize;
+		ground.position = BoardManager.Instance.boardPos;
 
 		ground.localScale = new Vector3(size.x, size.y, 1f);
 
-		foreach (Vector3 pos in Game.Instance.grid.GetNodePositions())
+		foreach (Vector3 pos in BoardManager.Instance.grid.GetNodesPosition())
 		{
 			GameTile tile = Instantiate(tilePrefab);
 			tile.transform.SetParent(transform, false);
