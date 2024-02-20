@@ -1,9 +1,11 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public struct AgentData
 {
-    public int life;
+    [HideInInspector] public string name;
+    public int hp;
     public float speed;
     public float showHitTime;
 }

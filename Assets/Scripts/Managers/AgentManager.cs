@@ -12,8 +12,8 @@ public class AgentManager : Singleton<AgentManager>
     [Header("Properties")]
     [SerializeField]
     private AgentData _agentData;
-    public AgentData agentData => _agentData;
-
+    public AgentData agentData => GetAgent();
+    private uint _freeId = 0;
 
     [Header("Generator")]
 
@@ -31,6 +31,7 @@ public class AgentManager : Singleton<AgentManager>
     private int _agentsCount;
     private Scene _contentScene;
 
+
     private void Awake()
     {
         base.Awake();
@@ -42,6 +43,13 @@ public class AgentManager : Singleton<AgentManager>
         SpawnStartAgents();
 
         StartCoroutine(SpawnAgents());
+    }
+
+    private AgentData GetAgent()
+    {
+        var newAgent = _agentData;
+        newAgent.name = $"Agent {_freeId++}";
+        return newAgent;
     }
 
     private void OnAgentDeath() => _agentsCount--;

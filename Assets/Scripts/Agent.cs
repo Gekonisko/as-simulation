@@ -11,6 +11,7 @@ public class Agent : MonoBehaviour
 
     [SerializeField]
     private AgentData _data;
+    public AgentData data => _data;
 
     private Color _color;
     private Node _currentNode, _nextNode;
@@ -18,6 +19,8 @@ public class Agent : MonoBehaviour
     void Start()
     {
         _data = AgentManager.Instance.agentData;
+        transform.name = _data.name;
+
         _color = RandomizeColor();
 
         _currentNode = BoardManager.Instance.GetRandomNode();
@@ -87,9 +90,10 @@ public class Agent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _data.life -= 1;
+        _data.hp -= 1;
+        Events.UpdateAgent(_data);
         ShowHit();
-        if (_data.life <= 0) Destroy(gameObject);
+        if (_data.hp <= 0) Destroy(gameObject);
     }
 
     private void OnDestroy()
