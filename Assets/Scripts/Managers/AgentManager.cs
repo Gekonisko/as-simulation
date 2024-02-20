@@ -11,8 +11,8 @@ public class AgentManager : Singleton<AgentManager>
 
     [Header("Properties")]
     [SerializeField]
-    private float _agentSpeed = 1;
-    public float agentSpeed => _agentSpeed;
+    private AgentData _agentData;
+    public AgentData agentData => _agentData;
 
 
     [Header("Generator")]
@@ -31,6 +31,12 @@ public class AgentManager : Singleton<AgentManager>
     private int _agentsCount;
     private Scene _contentScene;
 
+    private void Awake()
+    {
+        base.Awake();
+        Events.AgentDeath += OnAgentDeath;
+    }
+
     private void Start()
     {
         SpawnStartAgents();
@@ -38,15 +44,20 @@ public class AgentManager : Singleton<AgentManager>
         StartCoroutine(SpawnAgents());
     }
 
+    private void OnAgentDeath() => _agentsCount--;
+
     private IEnumerator SpawnAgents()
     {
-        while (_agentsCount < 30)
+        while (true)
         {
             yield return new WaitForSeconds(_timeToGenerate);
 
-            Agent agent = Instantiate(_agentPrefab);
-            MoveToAgentScene(agent.gameObject);
-            _agentsCount++;
+            if (_agentsCount < _maxAgents)
+            {
+                Agent agent = Instantiate(_agentPrefab);
+                MoveToAgentScene(agent.gameObject);
+                _agentsCount++;
+            }
         }
     }
 
@@ -82,6 +93,7 @@ public class AgentManager : Singleton<AgentManager>
 
     private void OnDestroy()
     {
+        Events.AgentDeath -= OnAgentDeath;
         StopAllCoroutines();
     }
 }

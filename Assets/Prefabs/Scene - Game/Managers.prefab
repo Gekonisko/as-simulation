@@ -123,7 +123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agentPrefab: {fileID: 8247197275086697894, guid: 819af6dc0aaa8f84b995983e6707d757, type: 3}
-  _agentSpeed: 2
+  _agentData:
+    life: 3
+    speed: 2
+    showHitTime: 0.5
   _startAgents: 3
   _timeToGenerate: 2
   _maxAgents: 30
