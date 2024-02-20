@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 1483773756855483306}
   - {fileID: 2143048188082295956}
+  - {fileID: 2450859529036895398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3576832370386927101
@@ -78,6 +79,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _boardSize: {x: 10, y: 10}
+--- !u!1 &5386257698918763785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2450859529036895398}
+  - component: {fileID: 1300834134698858189}
+  - component: {fileID: 7335004771975698113}
+  m_Layer: 0
+  m_Name: SelectionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2450859529036895398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386257698918763785}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3399024984079234939}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1300834134698858189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386257698918763785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded0cf45bc3c16f478b7556b7f99eafb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7335004771975698113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386257698918763785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38536d54ec8d0b9418d4c751e98ec840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8395272630071827827
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agentPrefab: {fileID: 8247197275086697894, guid: 819af6dc0aaa8f84b995983e6707d757, type: 3}
   _agentData:
-    life: 3
+    name: 
+    hp: 3
     speed: 2
     showHitTime: 0.5
   _startAgents: 3

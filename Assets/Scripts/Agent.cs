@@ -39,6 +39,11 @@ public class Agent : MonoBehaviour
             ChooseNextNode();
     }
 
+    private void OnMouseDown()
+    {
+        SelectionManager.Instance.Select(this);
+    }
+
     private void UpdatePosition()
     {
         transform.position = Vector3.MoveTowards(transform.position, _nextNode.worldPos, _data.speed * Time.deltaTime);
