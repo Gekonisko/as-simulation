@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 4275960494807203714}
-  tilePrefab: {fileID: 8975987087259651578, guid: f2eba09ee81f6714e8f5895361cae0f9, type: 3}
+  tilePrefab: {fileID: 3631964580261964339, guid: f2eba09ee81f6714e8f5895361cae0f9, type: 3}
 --- !u!1 &2930887341644921039
 GameObject:
   m_ObjectHideFlags: 0

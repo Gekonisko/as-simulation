@@ -7,7 +7,7 @@ public class Board : MonoBehaviour
 	Transform ground = default;
 
 	[SerializeField]
-	GameTile tilePrefab = default;
+	GameObject tilePrefab = default;
 
 	Vector2Int size;
 
@@ -20,7 +20,7 @@ public class Board : MonoBehaviour
 
 		foreach (Vector3 pos in BoardManager.Instance.grid.GetNodesPosition())
 		{
-			GameTile tile = Instantiate(tilePrefab);
+			GameObject tile = Instantiate(tilePrefab);
 			tile.transform.SetParent(transform, false);
 			tile.transform.localPosition = pos;
 		}
