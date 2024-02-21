@@ -20,10 +20,13 @@ public class Agent : MonoBehaviour
 
     void Start()
     {
+        _capsuleCollider.enabled = true;
+    }
+
+    private void OnEnable()
+    {
         _data = AgentManager.Instance.agentData;
         transform.name = _data.name;
-
-        _color = RandomizeColor();
 
         _currentNode = BoardManager.Instance.GetRandomNode();
 
@@ -31,8 +34,8 @@ public class Agent : MonoBehaviour
         _nextNode = possibleDirections.ElementAt(Random.Range(0, possibleDirections.Count));
 
         transform.position = _currentNode.worldPos;
-        _capsuleCollider.enabled = true;
 
+        _color = RandomizeColor();
         _capsule.material.color = _color;
     }
 
@@ -96,14 +99,16 @@ public class Agent : MonoBehaviour
         _data.hp -= 1;
         Events.UpdateAgent.Invoke(_data);
         ShowHit();
-        if (_data.hp <= 0) Destroy(gameObject);
+        if (_data.hp <= 0) Deactivate();
     }
 
-    private void OnDestroy()
+    private void Deactivate()
     {
+        SelectionManager.Instance.Deselect(this);
         Events.AgentDeath?.Invoke();
         StopAllCoroutines();
-    }
 
+        gameObject.SetActive(false);
+    }
 
 }

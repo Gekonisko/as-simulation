@@ -24,6 +24,13 @@ public class SelectionManager : Singleton<SelectionManager>
 
     }
 
+    public void Deselect(Agent agent)
+    {
+        _selectionResponse.OnDeselect(agent.transform);
+        if (agent.transform == _selectedObject)
+            _selectedObject = null;
+    }
+
 
 
 }

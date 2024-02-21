@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.Collections.Generic;
 using Chapter.Singleton;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,7 +29,9 @@ public class AgentManager : Singleton<AgentManager>
     [SerializeField]
     private int _maxAgents = 30;
 
+    private List<Agent> _pooledAgents;
     private int _agentsCount;
+
     private Scene _contentScene;
 
 
@@ -40,7 +43,7 @@ public class AgentManager : Singleton<AgentManager>
 
     private void Start()
     {
-        SpawnStartAgents();
+        CreateObjectPoolOfAgents();
 
         StartCoroutine(SpawnAgents());
     }
@@ -62,21 +65,35 @@ public class AgentManager : Singleton<AgentManager>
 
             if (_agentsCount < _maxAgents)
             {
-                Agent agent = Instantiate(_agentPrefab);
-                MoveToAgentScene(agent.gameObject);
+                GetPooledObject()?.gameObject.SetActive(true);
                 _agentsCount++;
             }
         }
     }
 
-    private void SpawnStartAgents()
+    private void CreateObjectPoolOfAgents()
     {
-        for (int i = 0; i < _startAgents; i++)
+        _pooledAgents = new List<Agent>();
+
+        for (int i = 0; i < _maxAgents; i++)
         {
             Agent agent = Instantiate(_agentPrefab);
+            agent.gameObject.SetActive(i < _startAgents);
             MoveToAgentScene(agent.gameObject);
+
+            _pooledAgents.Add(agent);
         }
         _agentsCount = _startAgents;
+    }
+
+    private Agent GetPooledObject()
+    {
+        foreach (Agent agent in _pooledAgents)
+        {
+            if (agent.isActiveAndEnabled == false)
+                return agent;
+        }
+        return null;
     }
 
     private void MoveToAgentScene(GameObject o)
