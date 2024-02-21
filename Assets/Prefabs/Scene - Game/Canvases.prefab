@@ -799,7 +799,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 671165534911559421}
         m_TargetAssemblyTypeName: GenerateNumbersView, Assembly-CSharp
-        m_MethodName: PressButton
+        m_MethodName: OnPressButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

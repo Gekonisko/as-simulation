@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GenerateNumbersView : MonoBehaviour
 {
-    public void PressButton()
+    public void OnPressButton()
     {
         Events.GenerateNumbers.Invoke();
     }

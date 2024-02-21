@@ -8,6 +8,8 @@ public class Agent : MonoBehaviour
     MeshRenderer _capsule;
     [SerializeField]
     CapsuleCollider _capsuleCollider;
+    [SerializeField]
+    Rigidbody _rig;
 
     [SerializeField]
     private AgentData _data;
@@ -34,11 +36,11 @@ public class Agent : MonoBehaviour
         _capsule.material.color = _color;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         UpdatePosition();
 
-        if (transform.position == _nextNode.worldPos)
+        if (Vector3.Distance(transform.position, _nextNode.worldPos) <= 0.1)
             ChooseNextNode();
     }
 
@@ -49,7 +51,8 @@ public class Agent : MonoBehaviour
 
     private void UpdatePosition()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _nextNode.worldPos, _data.speed * Time.deltaTime);
+        var direction = Vector3.Normalize(_nextNode.worldPos - transform.position);
+        _rig.velocity = direction * _data.speed;
     }
 
     private void ChooseNextNode()
@@ -91,7 +94,7 @@ public class Agent : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _data.hp -= 1;
-        Events.UpdateAgent(_data);
+        Events.UpdateAgent.Invoke(_data);
         ShowHit();
         if (_data.hp <= 0) Destroy(gameObject);
     }

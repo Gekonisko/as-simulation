@@ -51,12 +51,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capsule: {fileID: 6017304798882411703}
   _capsuleCollider: {fileID: 2194269392880224502}
+  _rig: {fileID: 8115800678230888312}
   _data:
     name: 
     hp: 0
     speed: 0
     showHitTime: 0
-  deathEvent: {fileID: 11400000, guid: 2abe66431f2e3d04db353aeb9e972bb1, type: 2}
 --- !u!33 &9122541314728890366
 MeshFilter:
   m_ObjectHideFlags: 0
